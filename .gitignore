@@ -1,0 +1,8 @@
+Marketing Analytics/ecommerce_prediction/
+Marketing Analytics/CRUD API/
+Marketing Analytics/Age Detection/
+Movie Review/Data/
+data/**/
+data/aclImdb/test/neg/0_2.txt
+data/glove.6B.100d.zip
+data/aclImdb_v1.tar.gz

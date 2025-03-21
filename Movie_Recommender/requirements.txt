@@ -1,0 +1,11 @@
+flask==3.0.2         # For creating the web app
+gdown==4.7.1         # For downloading data from Google Drive
+pandas==1.5.3        # For data manipulation
+numpy==1.26.4        # For numerical operations
+annoy==1.17.3        # For content-based recommendations (Annoy index)
+scikit-learn==1.2.2  # For TF-IDF and preprocessing
+ipython==8.10.0      # Interactive Python shell
+surprise==0.1        # For collaborative filtering (SVD)
+psutil==5.8.0        # For system monitoring
+psycopg2-binary==2.9.10  # For PostgreSQL database connection
+python-dotenv       # For environment variables

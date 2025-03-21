@@ -1,0 +1,364 @@
+/* Global Styles */
+:root {
+    --primary-color: #3f51b5;
+    --primary-dark: #303f9f;
+    --primary-light: #c5cae9;
+    --secondary-color: #ff4081;
+    --text-color: #333;
+    --light-text: #f5f5f5;
+    --background-color: #f5f7fa;
+    --card-color: #ffffff;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.search-box {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: var(--shadow);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Loading Spinner */
+.loading {
+    display: none;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid var(--primary-color);
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Recommendations Container */
+.recommendations-container {
+    display: none;
+    margin-top: 2rem;
+}
+
+.recommendations-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.recommendations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.movie-card {
+    background-color: var(--card-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.movie-poster {
+    height: 200px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 2rem;
+}
+
+.movie-info {
+    padding: 1.5rem;
+}
+
+.movie-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-dark);
+}
+
+.movie-year {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Error Message */
+.error-message {
+    display: none;
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.error-message i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-box {
+        flex-direction: column;
+        border-radius: 8px;
+    }
+    
+    input[type="text"] {
+        border-radius: 8px 8px 0 0;
+    }
+    
+    button {
+        padding: 15px;
+        border-radius: 0 0 8px 8px;
+    }
+    
+    .recommendations {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Add these styles to your existing CSS file */
+
+/* Movie Card Hover and Click Effects */
+.movie-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+}
+
+/* We'll use JavaScript to control the visibility instead of CSS hover */
+.movie-rating-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+/* Keep the hover effect as a fallback but make it less prominent */
+.movie-card:hover .movie-rating-overlay {
+    opacity: 0.95;
+    visibility: visible;
+}
+
+/* Star Rating */
+.rating-stars {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.star {
+    color: #ddd;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.star:hover, .star.selected {
+    color: #ffc107;
+}
+
+/* Feedback Buttons */
+.feedback-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.feedback-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.yes-btn {
+    background-color: #3f51b5;
+    color: white;
+}
+
+.no-btn {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.feedback-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Status Messages */
+.rating-status {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-style: italic;
+    height: 20px;
+}
+/* Add these styles to your existing CSS file */
+
+/* Analytics Page Styles */
+.analytics-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.analytics-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.analytics-header select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.analytics-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background-color: #f5f7fa;
+    padding: 1.2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+}
+
+.metric-title {
+    font-size: 0.9rem;

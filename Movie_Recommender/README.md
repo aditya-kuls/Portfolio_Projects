@@ -4,12 +4,12 @@
 
 1. Clone this repo!
 ```bash
-git clone https://github.com/cmu-seai/group-project-s25-50-shades-of-gradient-descent.git
+git clone https://github.com/aditya-kuls/Portfolio_Projects/tree/main/Movie_Recommender
 ```
 
 2. Move to the corresponding directory
 ```bash
-cd group-project-s25-50-shades-of-gradient-descent
+cd Movie_Recommender
 ```
 
 3. Create a virtual environment (make sure you're using python version 3.12)
